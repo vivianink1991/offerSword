@@ -1,0 +1,89 @@
+<!--
+ * @Author: your name
+ * @Date: 2019-03-23 16:15:37
+ * @LastEditTime: 2020-07-04 21:35:39
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /offerSword/index.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./007_addTwoNumbers.js">
+    </script>
+<script>
+/**
+ * @param {string} s
+ * @return {number}
+ */
+ var romanToInt = function(s) {
+    var numMap = {
+        I: 1,
+        V: 5,
+        X: 10,
+        L: 50,
+        C: 100,
+        D: 500,
+        M: 1000
+    };
+    
+    var sum = 0;
+    var i = 0;
+    var len = s.length;
+    var next = 0;
+    
+    while(i < len) {
+        switch (s[i]) {
+            case 'I':
+                next = s[i+1];
+                if (next === 'V' || next === 'X') {
+                    sum += numMap[next] - numMap['I'];
+                    i = i + 2;
+                } else {
+                    sum += numMap['I'];
+                    i++;
+                }
+                break;
+                
+            case 'X':
+                next = s[i+1];
+                if (next === 'L' || next === 'C') {
+                    sum += numMap[next] - numMap['X'];
+                    i = i + 2;
+                } else {
+                    sum += numMap['X'];
+                    i++;
+                }
+                break;
+                
+            case 'C':
+                next = s[i+1];
+                if (next === 'D' || next === 'M') {
+                    sum += numMap[next] - numMap['C'];
+                    i = i + 2;
+                } else {
+                    sum += numMap['C'];
+                    i++;
+                }
+                break;
+            default: 
+                sum += s[i];
+                i++;
+                
+        }
+    }
+    
+    return sum;
+};
+
+romanToInt('LVIII');
+
+</script>
+</body>
+</html>
